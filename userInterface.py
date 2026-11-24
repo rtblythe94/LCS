@@ -46,18 +46,18 @@ class ManageUserInterface(ctk.CTk):
 				open_book_label.pack()
 				
 				## username text box
-				text= "username"
+				text = "username"
 				username_box = self.login_bar(text, widget_container)
 				username_box.pack(pady=5)
 				
 				## password text box
-				text="password"
+				text = "password"
 				password_box = self.login_bar(text, widget_container)
 				password_box.pack(pady=5)
 											
 				##create login button
 				##pack buttons to widget container
-				self.login = self.custom_button(text = "login", master_container=widget_container, command=lambda: self.controller.navigate("patron_main"))
+				self.login = self.custom_button(text = "login", master_container=widget_container, command=lambda: self.controller.login(username_box.get().strip(), password_box.get()))
 
 				self.login.pack(pady=10)
 ###!!!!! testing command setting only. change later to select usertype based on login credentials		
@@ -77,7 +77,7 @@ class ManageUserInterface(ctk.CTk):
 					master=widget_container,
 					width=180,
 					height=30,
-					text="Forgot password?",
+					text="Having trouble signing in?",
 					font = ("Times New Roman", 14, "bold"),
 					fg_color = "#ffffff",
 					hover_color = "#2980b9",
@@ -135,7 +135,7 @@ class ManageUserInterface(ctk.CTk):
 				self.button3.pack(pady=10)
 				
 				##pin logout button to bottom-right
-				logout_button = self.custom_button(text="Logout", master_container=self)
+				logout_button = self.custom_button(text="Logout", master_container=self, command=self.controller.logout)
 				logout_button.place(
 				relx=1.0,
 				rely=1.0,
@@ -166,7 +166,7 @@ class ManageUserInterface(ctk.CTk):
 					)
 														
 				##pin return button to bottom-right
-				logout_button = self.custom_button(text="return", master_container=self)
+				logout_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
 				logout_button.place(
 				relx=1.0,
 				rely=1.0,
@@ -196,7 +196,7 @@ class ManageUserInterface(ctk.CTk):
 				)	
 				self.table_container.grid_columnconfigure(0, weight=1)
 				## call load_book_database to build book table from 'book.csv'
-				book_table = self.load_book_database(self.table_container)
+				book_table = self.build_book_table(self.table_container)
 				book_table.pack(side="top", fill="both")
 			
 				book_table.configure(
@@ -262,7 +262,7 @@ class ManageUserInterface(ctk.CTk):
 				self.endDay_button.pack(pady=10)
 								
 				##pin logout button to bottom-right
-				logout_button = self.custom_button(text="Logout", master_container=self)
+				logout_button = self.custom_button(text="Logout", master_container=self, command=self.controller.logout)
 				logout_button.place(
 				relx=1.0,
 				rely=1.0,
@@ -320,7 +320,7 @@ class ManageUserInterface(ctk.CTk):
 				self.createreports_button.pack(pady=10)
 
 				##pin logout button to bottom-right
-				return_button = self.custom_button(text="return", master_container=self, command=self.contorller.go_back)
+				return_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
 				return_button.place(
 				relx=1.0,
 				rely=1.0,
@@ -332,14 +332,14 @@ class ManageUserInterface(ctk.CTk):
 ####################################################################################
 ############## move book page ######################################################
 ####################################################################################	
-			case "move book":
+			case "move_book":
 ##fix header_label to have it's own method
 				##create welcome header
 				header_label = ctk.CTkLabel(
 					master=None,
 					#use when fully implemented
 					#text="Welcome " + self.userName,
-					text = "Welcome, Librarian: RBlythe",
+					text = "Move Books",
 					font=("Times New Roman", 20, "bold"),
 					text_color=("#000000")
 					)
@@ -363,7 +363,148 @@ class ManageUserInterface(ctk.CTk):
 				
 				
 				##pin logout button to bottom-right
-				return_button = self.custom_button(text="return", master_container=self, command=self.contorller.go_back)
+				return_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
+				return_button.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-10)
+				
+####################################################################################
+############## book return #########################################################
+####################################################################################					
+			case "return_book":
+				##create header
+				header_label = ctk.CTkLabel(
+					master=None,
+					#use when fully implemented
+					#text="Welcome " + self.userName,
+					text = "Return Book",
+					font=("Times New Roman", 20, "bold"),
+					text_color=("#000000")
+					)
+				header_label.place(
+					relx=0,
+					rely=0,
+					anchor="nw",
+					x=10,
+					y=8
+					)
+														
+				##pin return button to bottom-right
+				logout_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
+				logout_button.place(
+				relx=1.0,
+				rely=1.0,
+				anchor="se",
+				x=-10,
+				y=-10
+				)
+####################################################################################
+############## patron & librarian user #############################################
+####################################################################################	
+
+			case "dual_usertype":
+				##create title widget
+##fix title_label to have it's own method
+				title_label = ctk.CTkLabel(
+					master = widget_container,
+					text="LCS",
+					font=("Times New Roman", 45, "bold"),
+					text_color=("#000000")
+					)
+				title_label.pack()
+##fix header_label to have it's own method
+				##create welcome header
+				header_label = ctk.CTkLabel(
+					master=None,
+					#use when fully implemented
+					#text="Welcome " + self.userName,
+					text = "Welcome, Patron: RBlythe",
+					font=("Times New Roman", 20, "bold"),
+					text_color=("#000000")
+					)
+				header_label.place(	
+					relx=0,
+					rely=0,
+					anchor="nw",
+					x=10,
+					y=8
+					)
+								
+				##create image, then pack on top
+				open_book = ctk.CTkImage(
+					Image.open("loginOpenBook.jpg"),
+					size=(200,150)
+					)
+				open_book_label = ctk.CTkLabel(master=widget_container, image=open_book, text='')
+				open_book_label.pack()
+								
+				##create buttons
+				##pack buttons to widget container
+				self.button2 = self.custom_button(text = "Return Book", master_container=widget_container, command=lambda: self.controller.navigate("return_book"))
+				self.button2.pack(pady=10)
+				self.button1 = self.custom_button(text = "Book Catalog", master_container=widget_container, command=lambda: self.controller.navigate("book_catalog"))
+				self.button1.pack(pady=10)
+				self.button3 = self.custom_button(text="Pay Fines", master_container=widget_container, command=lambda: self.controller.navigate("pay_fines"))
+				self.button3.pack(pady=10)
+
+				##create buttons
+				##pack buttons to widget container
+				self.managebooks_button = self.custom_button(text = "manage books", master_container=widget_container)
+				self.managebooks_button.pack(pady=10)
+				self.managebooks_patrons = self.custom_button(text = "manage patrons", master_container=widget_container, command = lambda: setattr(self, "app_state", "book_catalog"))
+				self.managebooks_patrons.pack(pady=10)
+				self.createreports_button = self.custom_button(text="create reports", master_container=widget_container)
+				self.createreports_button.pack(pady=10)
+				self.endDay_button = self.custom_button(text="end day", master_container=widget_container)
+				self.endDay_button.pack(pady=10)
+								
+				##pin logout button to bottom-right
+				logout_button = self.custom_button(text="Logout", master_container=self, command=self.controller.logout)
+				logout_button.place(
+				relx=1.0,
+				rely=1.0,
+				anchor="se",
+				x=-10,
+				y=-10
+				)
+					
+
+
+####################################################################################
+############## pay fines ###########################################################
+####################################################################################					
+			case "pay_fines":
+				##create header
+				header_label = ctk.CTkLabel(
+					master=None,
+					#use when fully implemented
+					#text="Welcome " + self.userName,
+					text = "Pay Fines",
+					font=("Times New Roman", 20, "bold"),
+					text_color=("#000000")
+					)
+				header_label.place(
+					relx=0,
+					rely=0,
+					anchor="nw",
+					x=10,
+					y=8
+					)
+														
+				##pin return button to bottom-right
+				logout_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
+				logout_button.place(
+				relx=1.0,
+				rely=1.0,
+				anchor="se",
+				x=-10,
+				y=-10
+				)		
+				
+####################################################################################
+############## recover email/password page #########################################
+####################################################################################	
+
+				##pin logout button to bottom-right
+				return_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
 				return_button.place(
 				relx=1.0,
 				rely=1.0,
@@ -371,13 +512,15 @@ class ManageUserInterface(ctk.CTk):
 				x=-10,
 				y=-10
 				)
-
+				
+				
+#####################################################################################				
+#####################################################################################
 	## text bar generator
-	def text_bar(self, master_container=None):
+	def text_bar(self, master_container=None, placeholder="Search", show=""):
 		textBar = ctk.CTkEntry(
-			master=master_container,
-			placeholder_text="Search",
-			#textvariable=text_variable,
+			master = master_container,
+			placeholder_text = placeholder,
 			height=20,
 			width=260,
 			corner_radius=2,
@@ -498,5 +641,32 @@ class ManageUserInterface(ctk.CTk):
 		for widget in self.winfo_children():
 			widget.destroy()
 
+	def build_book_table(self, container):
+		data = self.controller.load_book_database()
+		table = CTkTable(master=container, row=len(data), column=len(data[0]), anchor="w", values=data)
+		return table
+		
+	## create dialog box which displays passed message parameter
+	def error_popup(self, message):
+		dialog_box = ctk.CTkToplevel(self)
+		dialog_box.title("Error")
+		dialog_box.resizable(False, False)
+
+		## sex dialog box dimensions
+		box_width = 300
+		box_height = 140
+		
+		## center dialog box to window
+		self.update_idletasks()
+		x = self.winfo_x() + (self.winfo_width() //2) - (box_width //2)
+		y = self.winfo_y() + (self.winfo_height() //2) - (box_height //2)
+		dialog_box.geometry(f"{box_width}x{box_height}+{x}+{y}")
+		dialog_box.attributes("-topmost", True)
+		dialog_box.grab_set()
+				
+		ctk.CTkLabel(dialog_box, text=message).pack(pady=(25,15))
+		ok_button = self.custom_button(text="accept", master_container=dialog_box, command=dialog_box.destroy)
+		ok_button.pack()
+	
 if __name__ == '__main__':
     sys.exit(main(sys.argv[1:]))
