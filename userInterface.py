@@ -115,7 +115,6 @@ class ManageUserInterface(ctk.CTk):
 				search_bar = self.search_bar(widget_container)
 				search_bar.pack(anchor="center")
 				
-## delete this. Ricardo has completed this in book_services.py
 		## create container for book table
 				self.table_container = ctk.CTkScrollableFrame(
 					master=widget_container,
@@ -250,13 +249,6 @@ class ManageUserInterface(ctk.CTk):
 				self.create_title(widget_container)
 				self.create_header("Create Reports")
 								
-				##create image, then pack on top
-				open_book = ctk.CTkImage(
-					Image.open("loginOpenBook.jpg"),
-					size=(200,150)
-					)
-				open_book_label = ctk.CTkLabel(master=widget_container, image=open_book, text='')
-				open_book_label.pack()
 				
 				##pin logout button to bottom-right
 				return_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
@@ -270,9 +262,7 @@ class ManageUserInterface(ctk.CTk):
 				self.create_title(widget_container)
 				self.create_header("End Day")
 								
-				##create image, then pack on top
-				open_book = ctk.CTkImage(Image.open("loginOpenBook.jpg"), size=(200,150))	
-						
+
 				##pin logout button to bottom-right
 				return_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
 				return_button.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-10)		

@@ -3,6 +3,8 @@ import userInterface
 import csv
 from CTkTable import CTkTable
 import sqlite3
+import user_services
+import book_services
 
 class AppController:
 	##initialize
@@ -10,62 +12,39 @@ class AppController:
 		self.view = view
 		self.view.set_controller(self)
 		self.app_state = "login"
+		self.patron_manager = user_services.ManagePatron()
 		self.history = []
 				
 	def run(self):
 		self.navigate("login")
 		self.view.mainloop()
-		
-####################################################################################
-############## login/logout ########################################################
-####################################################################################			
+	
+	## login	
 	def login(self, username, password):
-		data = self.connect_database()
-		user = data.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
-		data.close()
+		user = self.patron_manager.verify_login(username, password)
 		
-		if user and user["password"] == password:
-			self.history.clear()			
-			if user["user_type"] =="Patron":
+		if user:
+			self.history.clear()
+			role = (user["user_type"]).strip().lower()
+
+			if role  == "patron":
 				self.navigate("patron_main")
-			elif user["user_type"] == "Librarian":
+			elif role  == "librarian":
 				self.navigate("librarian_main")
 			else:
 				self.navigate("dual_usertype")
 			return user
-
+		
 		self.view.error_popup("Invalid username or password.")
 		return None
-		
-	## open user database
-	def connect_database(self):	
-		users = sqlite3.connect("users.db")
-		users.row_factory = sqlite3.Row
-		users.execute("""
-			CREATE TABLE IF NOT EXISTS users (
-			id INTEGER PRIMARY KEY AUTOINCREMENT,
-			username TEXT UNIQUE NOT NULL,
-			password TEXT NOT NULL,
-			user_type TEXT DEFAULT 'patron'
-			)
-			""")
-		users.commit()
-		return users
-							
-	## log user out
+	
+	## logout
 	def logout(self):
 		self.history.clear()
 		self.navigate("login")
 		
-
-	## load csv file containing books and assemble table
-	def load_book_database(self):
-		with open("books.csv", mode='r', newline='') as file:
-			return list(csv.reader(file))
-	
 	## button call to change app_state	
 	def navigate(self, new_state):
-		##self.userInterface.clear_window()
 		self.app_state = new_state
 		self.history.append(new_state)
 		self.view.switchUI(new_state)
