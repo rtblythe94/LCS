@@ -112,9 +112,6 @@ class ManageUserInterface(ctk.CTk):
 				logout_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
 				logout_button.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-10)
 				
-				# Ricardo System 4: embedded catalog search and sortable results
-				from ricardo_pages import render_search_catalog
-				render_search_catalog(self, widget_container)
 
 				## create book dropdown
 				option_list = ["hold book","borrow book"]
@@ -213,13 +210,6 @@ class ManageUserInterface(ctk.CTk):
 				self.create_title(widget_container)
 				self.create_header("Create Reports")
 								
-				##create image, then pack on top
-				open_book = ctk.CTkImage(
-					Image.open("loginOpenBook.jpg"),
-					size=(200,150)
-					)
-				open_book_label = ctk.CTkLabel(master=widget_container, image=open_book, text='')
-				open_book_label.pack()
 				
 				##pin logout button to bottom-right
 				return_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
@@ -233,9 +223,7 @@ class ManageUserInterface(ctk.CTk):
 				self.create_title(widget_container)
 				self.create_header("End Day")
 								
-				##create image, then pack on top
-				open_book = ctk.CTkImage(Image.open("loginOpenBook.jpg"), size=(200,150))	
-						
+
 				##pin logout button to bottom-right
 				return_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
 				return_button.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-10)		
