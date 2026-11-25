@@ -112,34 +112,10 @@ class ManageUserInterface(ctk.CTk):
 				logout_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
 				logout_button.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-10)
 				
-				search_bar = self.search_bar(widget_container)
-				search_bar.pack(anchor="center")
-				
-## delete this. Ricardo has completed this in book_services.py
-		## create container for book table
-				self.table_container = ctk.CTkScrollableFrame(
-					master=widget_container,
-					width=400,
-					height=400,
-					scrollbar_button_color="#3f48cc",
-					scrollbar_button_hover_color="#2980b9",
-					orientation="vertical"
-					)
-				self.table_container.pack(
-					side="top",
-					padx=20,
-					expand=True,
-					pady=(5,10)
-				)	
-				self.table_container.grid_columnconfigure(0, weight=1)
-				## call load_book_database to build book table from 'book.csv'
-				book_table = self.build_book_table(self.table_container)
-				book_table.pack(side="top", fill="both")
-			
-				book_table.configure(
-					hover_color="#333333"
-				)
-				
+				# Ricardo System 4: embedded catalog search and sortable results
+				from ricardo_pages import render_search_catalog
+				render_search_catalog(self, widget_container)
+
 				## create book dropdown
 				option_list = ["hold book","borrow book"]
 				book_dropdown = self.create_dropdown(option_list, widget_container, text="-- select action --")
@@ -188,22 +164,9 @@ class ManageUserInterface(ctk.CTk):
 				self.create_title(widget_container)
 				self.create_header("Manage Books")
 								
-				##create image, then pack on top
-				open_book = ctk.CTkImage(
-					Image.open("loginOpenBook.jpg"),
-					size=(200,150)
-					)
-				open_book_label = ctk.CTkLabel(master=widget_container, image=open_book, text='')
-				open_book_label.pack()
-								
-				##create buttons
-				##pack buttons to widget container
-				self.managebooks_button = self.custom_button(text = "add book", master_container=widget_container)
-				self.managebooks_button.pack(pady=10)
-				self.managebooks_patrons = self.custom_button(text = "move book", master_container=widget_container, command = lambda: setattr(self, "app_state", "book_catalog"))
-				self.managebooks_patrons.pack(pady=10)
-				self.createreports_button = self.custom_button(text="remove book", master_container=widget_container)
-				self.createreports_button.pack(pady=10)
+				# Ricardo System 3: in-page book management
+				from ricardo_pages import render_book_management
+				render_book_management(self, widget_container)
 
 				##pin logout button to bottom-right
 				return_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
