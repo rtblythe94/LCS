@@ -28,8 +28,12 @@ class ManagePatron:
 		with self.connect_database() as con:
 			user = con.execute("SELECT * FROM users WHERE username = ? AND password = ?",
 			(username, password)).fetchone()
-		self.active_user = user["username"]
-		return dict(user)
+			
+		if user:
+			self.active_user = user["username"]
+			return dict(user)
+		
+		return None
 		
 	def connect_database(self):
 		## open user database
