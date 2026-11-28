@@ -57,6 +57,11 @@ class AppController:
 			self.app_state = previous_page
 			self.view.switchUI(previous_page)
 
+	## send user query to user_services
+	def search_patrons(self, query):
+		results = self.patron_manager.search_patrons(query)
+		self.view.display_patron_results(results)
+
 	## save data before closing app
 	def exit_app(self):
 		self.view.destroy()

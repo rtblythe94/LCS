@@ -1,100 +1,100 @@
-Title,Author,Genre
-20000 Leagues Under the Sea,"Verne, Jules",fiction
-"Age of Discontuinity, The","Drucker, Peter",economics
-"Age of the Warrior, The","Fisk, Robert",history
-"Age of Wrath, The","Eraly, Abraham",history
-Aghal Paghal,"Deshpande, P L",nonfiction
-Ahe Manohar Tari,"Deshpande, Sunita",nonfiction
-All the President's Men,"Woodward, Bob",history
-"Amulet of Samarkand, The","Stroud, Jonathan",fiction
-"Analysis, Vol I","Tao, Terence",mathematics
-Angels & Demons,"Brown, Dan",fiction
-Angels & Demons,"Brown, Dan",fiction
-Animal Farm,"Orwell, George",fiction
-Apulki,"Deshpande, P L",nonfiction
-"Argumentative Indian, The","Sen, Amartya",nonfiction
-"Arthashastra, The",Kautiyla,philosophy
-"Artist and the Mathematician, The","Aczel, Amir",science
-Asami Asami,"Deshpande, P L",fiction
-Ashenden of The British Agent,"Maugham, William S",fiction
-Ayn Rand Answers,"Rand, Ayn",philosophy
-Batatyachi Chal,Deshpande P L,fiction
-"Beautiful and the Damned, The","Deb, Siddhartha",nonfiction
-Beyond the Three Seas,"Dalrymple, William",history
-Birth of a Theorem,"Villani, Cedric",mathematics
-Bookless in Baghdad,"Tharoor, Shashi",nonfiction
-"Brethren, The","Grisham, John",fiction
-Broca's Brain,"Sagan, Carl",science
-Burning Bright,"Steinbeck, John",fiction
-"Case of the Lame Canary, The","Gardner, Earle Stanley",fiction
-Catch 22,"Heller, Joseph",fiction
-Char Shabda,"Deshpande, P L",nonfiction
-"Christmas Carol, A","Dickens, Charles",fiction
-City of Djinns,"Dalrymple, William",history
-"City of Joy, The","Lapierre, Dominique",fiction
-Clash of Civilizations and Remaking of the World Order,"Huntington, Samuel",history
-"Code Book, The","Singh, Simon",science
-"Complete Mastermind, The",BBC,nonfiction
-"Complete Sherlock Holmes, The - Vol I","Doyle, Arthur Conan",fiction
-"Complete Sherlock Holmes, The - Vol II","Doyle, Arthur Conan",fiction
-"Courtroom Genius, The",Sorabjee,nonfiction
-Crime and Punishment,"Dostoevsky, Fyodor",fiction
-"Deceiver, The","Forsyth, Frederick",fiction
-"Devil's Advocate, The","West, Morris",fiction
-"Discovery of India, The","Nehru, Jawaharlal",history
-Doctor in the Nude,"Gordon, Richard",fiction
-Doctor on the Brain,"Gordon, Richard",fiction
-Dongri to Dubai,"Zaidi, Hussain",nonfiction
-Down and Out in Paris & London,"Orwell, George",nonfiction
-"Drunkard's Walk, The","Mlodinow, Leonard",science
-Dylan on Dylan,"Dylan, Bob",nonfiction
-Econometric Analysis,"Greene, W. H.",economics
-Electric Universe,"Bodanis, David",science
-Empire of the Mughal - Brothers at War,"Rutherford, Alex",history
-Empire of the Mughal - Raiders from the North,"Rutherford, Alex",history
-Empire of the Mughal - Ruler of the World,"Rutherford, Alex",history
-Empire of the Mughal - The Serpent's Tooth,"Rutherford, Alex",history
-Empire of the Mughal - The Tainted Throne,"Rutherford, Alex",history
-Eyeless in Gaza,"Huxley, Aldous",fiction
-False Impressions,"Archer, Jeffery",fiction
-"Farewell to Arms, A","Hemingway, Ernest",fiction
-Freakonomics,"Dubner, Stephen",economics
-Free Will,"Harris, Sam",philosophy
-Freedom at Midnight,"Lapierre, Dominique",history
-From Beirut to Jerusalem,"Friedman, Thomas",history
-Girl who kicked the Hornet's Nest,"Larsson, Steig",fiction
-Girl who played with Fire,"Larsson, Steig",fiction
-Girl with the Dragon Tattoo,"Larsson, Steig",fiction
-God Created the Integers,"Hawking, Stephen",mathematics
-"Grapes of Wrath, The","Steinbeck, John",fiction
-"Great Indian Novel, The","Tharoor, Shashi",fiction
-"Great War for Civilization, The","Fisk, Robert",history
-Gun Gayin Awadi,"Deshpande, P L",nonfiction
-Hafasavnuk,Deshpande P L,fiction
-Half A Life,"Naipaul, V S",fiction
-"Hidden Connections, The","Capra, Fritjof",science
-"History of England, Foundation","Ackroyd, Peter",history
-History of Western Philosophy,"Russell, Bertrand",philosophy
-How to Think Like Sherlock Holmes,"Konnikova, Maria",psychology
-"Hunchback of Notre Dame, The","Hugo, Victor",fiction
-"Idea of Justice, The","Sen, Amartya",nonfiction
-Identity & Violence,"Sen, Amartya",philosophy
-"Idiot, The","Dostoevsky, Fyodor",fiction
-In a Free State,"Naipaul, V. S.",fiction
-India from Midnight to Milennium,"Tharoor, Shashi",history
-India's Legal System,Nariman,nonfiction
-"Information, The","Gleick, James",science
-Integration of the Indian States,"Menon, V P",history
-Jim Corbett Omnibus,"Corbett, Jim",nonfiction
-Journal of a Novel,"Steinbeck, John",fiction
-Jurassic Park,"Crichton, Michael",fiction
-"Justice, Judiciary and Democracy","Ranjan, Sudhanshu",philosophy
-"Last Lecture, The","Pausch, Randy",nonfiction
-"Last Mughal, The","Dalrymple, William",history
-"Life in Letters, A","Steinbeck, John",nonfiction
-Manasa,"Kale, V P",nonfiction
-Maqta-e-Ghalib,"Garg, Sanjay",fiction
-Mein Kampf,"Hitler, Adolf",nonfiction
-Men of Mathematics,"Bell, E T",mathematics
-"Moon and Sixpence, The","Maugham, William S",fiction
-"Moon is Down, The","Steinbeck, John",fiction
+Title,Author,Genre,ISBN,Status
+20000 Leagues Under the Sea,"Verne, Jules",fiction,,Available
+"Age of Discontuinity, The","Drucker, Peter",economics,,Available
+"Age of the Warrior, The","Fisk, Robert",history,,Available
+"Age of Wrath, The","Eraly, Abraham",history,,Available
+Aghal Paghal,"Deshpande, P L",nonfiction,,Available
+Ahe Manohar Tari,"Deshpande, Sunita",nonfiction,,Available
+All the President's Men,"Woodward, Bob",history,,Available
+"Amulet of Samarkand, The","Stroud, Jonathan",fiction,,Available
+"Analysis, Vol I","Tao, Terence",mathematics,,Available
+Angels & Demons,"Brown, Dan",fiction,,Available
+Angels & Demons,"Brown, Dan",fiction,,Available
+Animal Farm,"Orwell, George",fiction,,Available
+Apulki,"Deshpande, P L",nonfiction,,Available
+"Argumentative Indian, The","Sen, Amartya",nonfiction,,Available
+"Arthashastra, The",Kautiyla,philosophy,,Available
+"Artist and the Mathematician, The","Aczel, Amir",science,,Available
+Asami Asami,"Deshpande, P L",fiction,,Available
+Ashenden of The British Agent,"Maugham, William S",fiction,,Available
+Ayn Rand Answers,"Rand, Ayn",philosophy,,Available
+Batatyachi Chal,Deshpande P L,fiction,,Available
+"Beautiful and the Damned, The","Deb, Siddhartha",nonfiction,,Available
+Beyond the Three Seas,"Dalrymple, William",history,,Available
+Birth of a Theorem,"Villani, Cedric",mathematics,,Available
+Bookless in Baghdad,"Tharoor, Shashi",nonfiction,,Available
+"Brethren, The","Grisham, John",fiction,,Available
+Broca's Brain,"Sagan, Carl",science,,Available
+Burning Bright,"Steinbeck, John",fiction,,Available
+"Case of the Lame Canary, The","Gardner, Earle Stanley",fiction,,Available
+Catch 22,"Heller, Joseph",fiction,,Available
+Char Shabda,"Deshpande, P L",nonfiction,,Available
+"Christmas Carol, A","Dickens, Charles",fiction,,Available
+City of Djinns,"Dalrymple, William",history,,Available
+"City of Joy, The","Lapierre, Dominique",fiction,,Available
+Clash of Civilizations and Remaking of the World Order,"Huntington, Samuel",history,,Available
+"Code Book, The","Singh, Simon",science,,Available
+"Complete Mastermind, The",BBC,nonfiction,,Available
+"Complete Sherlock Holmes, The - Vol I","Doyle, Arthur Conan",fiction,,Available
+"Complete Sherlock Holmes, The - Vol II","Doyle, Arthur Conan",fiction,,Available
+"Courtroom Genius, The",Sorabjee,nonfiction,,Available
+Crime and Punishment,"Dostoevsky, Fyodor",fiction,,Available
+"Deceiver, The","Forsyth, Frederick",fiction,,Available
+"Devil's Advocate, The","West, Morris",fiction,,Available
+"Discovery of India, The","Nehru, Jawaharlal",history,,Available
+Doctor in the Nude,"Gordon, Richard",fiction,,Available
+Doctor on the Brain,"Gordon, Richard",fiction,,Available
+Dongri to Dubai,"Zaidi, Hussain",nonfiction,,Available
+Down and Out in Paris & London,"Orwell, George",nonfiction,,Available
+"Drunkard's Walk, The","Mlodinow, Leonard",science,,Available
+Dylan on Dylan,"Dylan, Bob",nonfiction,,Available
+Econometric Analysis,"Greene, W. H.",economics,,Available
+Electric Universe,"Bodanis, David",science,,Available
+Empire of the Mughal - Brothers at War,"Rutherford, Alex",history,,Available
+Empire of the Mughal - Raiders from the North,"Rutherford, Alex",history,,Available
+Empire of the Mughal - Ruler of the World,"Rutherford, Alex",history,,Available
+Empire of the Mughal - The Serpent's Tooth,"Rutherford, Alex",history,,Available
+Empire of the Mughal - The Tainted Throne,"Rutherford, Alex",history,,Available
+Eyeless in Gaza,"Huxley, Aldous",fiction,,Available
+False Impressions,"Archer, Jeffery",fiction,,Available
+"Farewell to Arms, A","Hemingway, Ernest",fiction,,Available
+Freakonomics,"Dubner, Stephen",economics,,Available
+Free Will,"Harris, Sam",philosophy,,Available
+Freedom at Midnight,"Lapierre, Dominique",history,,Available
+From Beirut to Jerusalem,"Friedman, Thomas",history,,Available
+Girl who kicked the Hornet's Nest,"Larsson, Steig",fiction,,Available
+Girl who played with Fire,"Larsson, Steig",fiction,,Available
+Girl with the Dragon Tattoo,"Larsson, Steig",fiction,,Available
+God Created the Integers,"Hawking, Stephen",mathematics,,Available
+"Grapes of Wrath, The","Steinbeck, John",fiction,,Available
+"Great Indian Novel, The","Tharoor, Shashi",fiction,,Available
+"Great War for Civilization, The","Fisk, Robert",history,,Available
+Gun Gayin Awadi,"Deshpande, P L",nonfiction,,Available
+Hafasavnuk,Deshpande P L,fiction,,Available
+Half A Life,"Naipaul, V S",fiction,,Available
+"Hidden Connections, The","Capra, Fritjof",science,,Available
+"History of England, Foundation","Ackroyd, Peter",history,,Available
+History of Western Philosophy,"Russell, Bertrand",philosophy,,Available
+How to Think Like Sherlock Holmes,"Konnikova, Maria",psychology,,Available
+"Hunchback of Notre Dame, The","Hugo, Victor",fiction,,Available
+"Idea of Justice, The","Sen, Amartya",nonfiction,,Available
+Identity & Violence,"Sen, Amartya",philosophy,,Available
+"Idiot, The","Dostoevsky, Fyodor",fiction,,Available
+In a Free State,"Naipaul, V. S.",fiction,,Available
+India from Midnight to Milennium,"Tharoor, Shashi",history,,Available
+India's Legal System,Nariman,nonfiction,,Available
+"Information, The","Gleick, James",science,,Available
+Integration of the Indian States,"Menon, V P",history,,Available
+Jim Corbett Omnibus,"Corbett, Jim",nonfiction,,Available
+Journal of a Novel,"Steinbeck, John",fiction,,Available
+Jurassic Park,"Crichton, Michael",fiction,,Available
+"Justice, Judiciary and Democracy","Ranjan, Sudhanshu",philosophy,,Available
+"Last Lecture, The","Pausch, Randy",nonfiction,,Available
+"Last Mughal, The","Dalrymple, William",history,,Available
+"Life in Letters, A","Steinbeck, John",nonfiction,,Available
+Manasa,"Kale, V P",nonfiction,,Available
+Maqta-e-Ghalib,"Garg, Sanjay",fiction,,Available
+Mein Kampf,"Hitler, Adolf",nonfiction,,Available
+Men of Mathematics,"Bell, E T",mathematics,,Available
+"Moon and Sixpence, The","Maugham, William S",fiction,,Available
+"Moon is Down, The","Steinbeck, John",fiction,,Available

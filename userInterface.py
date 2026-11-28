@@ -1,7 +1,7 @@
 from PIL import Image
 from CTkTable import CTkTable
 import customtkinter as ctk
-
+import user_services
 
 class ManageUserInterface(ctk.CTk):
 	def __init__(self):
@@ -78,7 +78,7 @@ class ManageUserInterface(ctk.CTk):
 			case "patron_main":
 				##create title widget
 				self.create_title(widget_container)
-				self.create_header("Welcome: ")
+				self.create_header("Welcome: " + str(self.controller.patron_manager.get_active_user()))
 								
 				##create image, then pack on top
 				open_book = ctk.CTkImage(
@@ -128,7 +128,7 @@ class ManageUserInterface(ctk.CTk):
 			case "librarian_main":
 					##create title widget
 				self.create_title(widget_container)
-				self.create_header("Welcome: ")
+				self.create_header("Welcome: " + str(self.controller.patron_manager.get_active_user()))
 								
 				##create image, then pack on top
 				open_book = ctk.CTkImage(
@@ -176,7 +176,9 @@ class ManageUserInterface(ctk.CTk):
 					##create title widget
 				self.create_title(widget_container)
 				self.create_header("Manage Patrons")
-								
+				self.results_frame = ctk.CTkFrame(master=widget_container, fg_color="transparent")
+				self.results_frame.pack(pady=10)
+				
 				##create image, then pack on top
 				open_book = ctk.CTkImage(
 					Image.open("loginOpenBook.jpg"),
@@ -193,7 +195,7 @@ class ManageUserInterface(ctk.CTk):
 				search_box.pack(pady=5)						
 
 				##pack buttons to widget container
-				self.search = self.custom_button(text = "Search", master_container=widget_container)#, command=lambda:)
+				self.search = self.custom_button(text = "Search", master_container=widget_container, command=lambda: self.controller.search_patrons(search_box.get()))
 				self.search.pack(pady=10)
 				
 
@@ -271,9 +273,8 @@ class ManageUserInterface(ctk.CTk):
 ####################################################################################	
 			case "dual_usertype":
 				##create title widget
-##fix title_label to have it's own method
 				self.create_title(widget_container)
-				self.create_header("Welcome: ")
+				self.create_header("Welcome: " + str(self.controller.patron_manager.get_active_user()))
 								
 				##create image, then pack on top
 				open_book = ctk.CTkImage(
@@ -333,7 +334,25 @@ class ManageUserInterface(ctk.CTk):
 ############## generators/widgets ##################################################
 ####################################################################################
 ####################################################################################	
+	def display_patron_results(self, results):
+		for widget in self.results_frame.winfo_children():
+			widget.destroy()
+			
+		if not results:
+			no_match = ctk.CTkLabel(master=self.results_frame, text= "No match found for ", font=("Times New Roman", 16), text_color="#000000")
+			no_match.pack(pady=10)
+			return
+		table_data = [["ID", "Username", "Role"]] + [list(row) for row in results]
 
+    # 4. Draw the CTkTable
+		table = CTkTable(
+			master=self.results_frame,
+			values=table_data,
+			header_color="#3f48cc",
+			hover_color="#2980b9"
+    )
+		table.pack(pady=10, padx=10)
+    		
 	## text bar generator
 	def text_bar(self, master_container=None, placeholder="Search", show=""):
 		textBar = ctk.CTkEntry(
@@ -385,6 +404,9 @@ class ManageUserInterface(ctk.CTk):
 			text_color = "#000000",
 			border_color = "#000000"
 		)
+		
+		if text == "password":
+			loginBar.configure(show="*")
 		return loginBar
 		
 	##button generator	
