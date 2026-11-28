@@ -1,8 +1,4 @@
 import sys
-import userInterface
-import csv
-from CTkTable import CTkTable
-import sqlite3
 import user_services
 import book_services
 
@@ -22,22 +18,18 @@ class AppController:
 	## login	
 	def login(self, username, password):
 		user = self.patron_manager.verify_login(username, password)
-		
 		if user:
 			self.history.clear()
 			role = (user["user_type"]).strip().lower()
-
 			if role  == "patron":
 				self.navigate("patron_main")
 			elif role  == "librarian":
 				self.navigate("librarian_main")
 			else:
-				self.navigate("dual_usertype")
-			return user
-		
-		self.view.error_popup("Invalid username or password.")
-		return None
-	
+				self.navigate("dual_usertype")		
+		else:			
+			self.view.error_popup("Invalid username or password.")
+
 	## logout
 	def logout(self):
 		self.history.clear()
@@ -60,8 +52,12 @@ class AppController:
 	## send user query to user_services
 	def search_patrons(self, query):
 		results = self.patron_manager.search_patrons(query)
-		self.view.display_patron_results(results)
-
+		
+		if not results:
+			self.view.error_popup("No match found")
+		else:
+			print(query)
+	
 	## save data before closing app
 	def exit_app(self):
 		self.view.destroy()

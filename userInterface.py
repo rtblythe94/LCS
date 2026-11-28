@@ -59,7 +59,8 @@ class ManageUserInterface(ctk.CTk):
 				exit_button.place(relx=1.0,rely=1.0,anchor="se",x=-10,y=-10)
 					
 				## account recovery button on login screen
-				reset_pw_button = ctk.CTkButton(
+
+				recovery_button = ctk.CTkButton(
 					master=widget_container,
 					width=180,
 					height=30,
@@ -69,8 +70,9 @@ class ManageUserInterface(ctk.CTk):
 					hover_color = "#2980b9",
 					text_color = "#3f48cc",
 					border_width = 3,
-					border_color = "#ffffff")
-				reset_pw_button.pack()
+					border_color = "#ffffff",
+					command=lambda: self.controller.navigate("recovery"))
+				recovery_button.pack()
 				
 ####################################################################################
 ############## patron main menu ####################################################
@@ -176,29 +178,8 @@ class ManageUserInterface(ctk.CTk):
 					##create title widget
 				self.create_title(widget_container)
 				self.create_header("Manage Patrons")
-				self.results_frame = ctk.CTkFrame(master=widget_container, fg_color="transparent")
-				self.results_frame.pack(pady=10)
 				
-				##create image, then pack on top
-				open_book = ctk.CTkImage(
-					Image.open("loginOpenBook.jpg"),
-					size=(200,150)
-					)
-					
-				open_book_label = ctk.CTkLabel(master=widget_container, image=open_book, text='')
-				open_book_label.pack()
-									
-				
-				## search text box
-				text = "Search"
-				search_box = self.login_bar(text, widget_container)
-				search_box.pack(pady=5)						
-
-				##pack buttons to widget container
-				self.search = self.custom_button(text = "Search", master_container=widget_container, command=lambda: self.controller.search_patrons(search_box.get()))
-				self.search.pack(pady=10)
-				
-
+				self.search_bar(widget_container)
 
 				##pin logout button to bottom-right
 				return_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
@@ -322,37 +303,51 @@ class ManageUserInterface(ctk.CTk):
 				return_button.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-10)		
 				
 ####################################################################################
-############## recover email/password page #########################################
+############## recover email/password pages ########################################
 ####################################################################################	
-			case "recovery":
+			case "recovery":			
 				##pin logout button to bottom-right
+				self.create_header("Account Recovery")
 				return_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
 				return_button.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-10)
 				
+				forgot_password = self.custom_button(text="Forgot Password", master_container=widget_container, command=lambda: self.controller.navigate("password_rec"))
+				forgot_password.pack(pady=10)
+				
+				forgot_username = self.custom_button(text="Forgot Username", master_container=widget_container, command=lambda: self.controller.navigate("username_rec"))
+				forgot_username.pack(pady=10)
+				
+			case "password_rec":
+				self.create_header("Password Recovery")
+				self.create_title(widget_container, "Enter email associated with this account:")
+
+				text = "Enter email associated with this account"
+				username_box = self.search_bar(widget_container, text)
+				username_box.pack(pady=5)
+				
+				##pin return button to bottom-right
+				return_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
+				return_button.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-10)
+								
+			case "username_rec":
+				self.create_header("Username Recovery")
+				self.create_title(widget_container, "Username Recovery")
+
+				text = "Enter email associated with this account"
+				username_box = self.search_bar(widget_container, text)
+				username_box.pack(pady=5)
+				
+				##pin return button to bottom-right
+				return_button = self.custom_button(text="return", master_container=self,  command=self.controller.return_page)
+				return_button.place(relx=1.0, rely=1.0, anchor="se", x=-10, y=-10)		
+								
 ####################################################################################
 ####################################################################################
 ############## generators/widgets ##################################################
 ####################################################################################
 ####################################################################################	
-	def display_patron_results(self, results):
-		for widget in self.results_frame.winfo_children():
-			widget.destroy()
-			
-		if not results:
-			no_match = ctk.CTkLabel(master=self.results_frame, text= "No match found for ", font=("Times New Roman", 16), text_color="#000000")
-			no_match.pack(pady=10)
-			return
-		table_data = [["ID", "Username", "Role"]] + [list(row) for row in results]
 
-    # 4. Draw the CTkTable
-		table = CTkTable(
-			master=self.results_frame,
-			values=table_data,
-			header_color="#3f48cc",
-			hover_color="#2980b9"
-    )
-		table.pack(pady=10, padx=10)
-    		
+
 	## text bar generator
 	def text_bar(self, master_container=None, placeholder="Search", show=""):
 		textBar = ctk.CTkEntry(
@@ -368,28 +363,21 @@ class ManageUserInterface(ctk.CTk):
 		return textBar
 	
 	## search bar
-	def search_bar(self, widget_container):
-		search_row = ctk.CTkFrame(master=widget_container, fg_color="transparent")
-		self.search_input = self.text_bar(master_container=search_row)
-		 
-		#create button for search
-		self.submit_button = ctk.CTkButton(
-			master=search_row,
-			text="submit",
-			height=20,
-			width=80,
-			corner_radius=2,
-			font=("Times New Roman", 12, "bold"),
-			fg_color="#3f48cc",
-			hover_color="#2980b9",
-			text_color = "#FFFFFF",
-			border_width = 2,
-			border_color = ("#000000")
-		)
-		self.search_input.pack(side="left", padx=(0,6))
-		self.submit_button.pack(side="left")
-		return search_row
-	
+	def search_bar(self, widget_container, text="Search"):
+		## create frame to store button and search bar together horizontally
+		search_container = ctk.CTkFrame(master=widget_container, fg_color="transparent")
+		search_container.pack(pady=10)
+							
+		## search text box
+		search_box = self.login_bar(text, search_container)
+		search_box.pack(side="left", pady=5, padx=10)
+		search_box.bind("<Return>", lambda event: self.controller.search_patrons(search_box.get()))				
+
+		##pack buttons to widget container
+		self.search_butt = self.custom_button(text = "Search", master_container=search_container, command=lambda: self.controller.search_patrons(search_box.get()))
+		self.search_butt.pack(pady=10)
+		return search_container
+				
 	## login bar for username and password
 	def login_bar(self, text, master_container):
 		loginBar = ctk.CTkEntry(
@@ -411,9 +399,14 @@ class ManageUserInterface(ctk.CTk):
 		
 	##button generator	
 	def custom_button(self, text, master_container=None, command=None):
+		widthButtText = 180
+		## if button is search button, then half size
+		if text == "Search":
+			widthButtText /= 2
+		## create button
 		button = ctk.CTkButton(
 			master=master_container,
-			width=180,
+			width=widthButtText,
 			height=30,
 			text=text,
 			command=command,
@@ -497,11 +490,6 @@ class ManageUserInterface(ctk.CTk):
 	def clear_window(self):
 		for widget in self.winfo_children():
 			widget.destroy()
-
-	def build_book_table(self, container):
-		data = self.controller.load_book_database()
-		table = CTkTable(master=container, row=len(data), column=len(data[0]), anchor="w", values=data)
-		return table
 		
 	## create dialog box which displays passed message parameter
 	def error_popup(self, message):
